@@ -1,7 +1,11 @@
+import Header from "./components/Header";
+import Main from "./components/Main";
+
 function App() {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className="flex min-h-dvh flex-col bg-gray-100 text-gray-900 antialiased">
+      <Header />
+      <Main />
     </div>
   );
 }
