@@ -3,12 +3,8 @@ import { useState } from "react";
 export default function Main() {
   const [ingredients, setIngredients] = useState([]);
 
-  function handleAddIngredient(event) {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
+  function addIngredients(formData) {
     const newIngredient = formData.get("ingredient");
-    // ingredients.push(ingredient);
-
     setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
   }
 
@@ -23,7 +19,7 @@ export default function Main() {
   return (
     <main className="mx-auto w-3/4">
       <form
-        onSubmit={handleAddIngredient}
+        action={addIngredients}
         className="flex items-center justify-center gap-4 p-20"
       >
         <input
