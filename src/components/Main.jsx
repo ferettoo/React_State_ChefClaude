@@ -10,7 +10,7 @@ export default function Main() {
 
   const listIngredients = ingredients.map((ingredient) => {
     return (
-      <li className="list-disc" key={ingredient}>
+      <li className="bg list-disc p-2" key={ingredient}>
         {ingredient}
       </li>
     );
@@ -32,7 +32,10 @@ export default function Main() {
           + Add Ingredient
         </button>
       </form>
-      <ul>{listIngredients}</ul>
+      <section className="mx-auto flex flex-col gap-4">
+        <h2 className="text-2xl font-bold">Ingredients on hand</h2>
+        <ul>{listIngredients}</ul>
+      </section>
     </main>
   );
 }
