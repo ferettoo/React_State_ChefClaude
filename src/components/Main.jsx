@@ -1,4 +1,6 @@
 import { useState } from "react";
+import IngredientsList from "./IngredientsList";
+import ClaudeRecipe from "./ClaudeRecipe";
 
 export default function Main() {
   const [ingredients, setIngredients] = useState([]);
@@ -7,14 +9,6 @@ export default function Main() {
     const newIngredient = formData.get("ingredient");
     setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
   }
-
-  const listIngredients = ingredients.map((ingredient) => {
-    return (
-      <li className="bg list-disc p-2" key={ingredient}>
-        {ingredient}
-      </li>
-    );
-  });
 
   return (
     <main className="mx-auto w-3/4">
@@ -32,10 +26,8 @@ export default function Main() {
           + Add Ingredient
         </button>
       </form>
-      <section className="mx-auto flex flex-col gap-4">
-        <h2 className="text-2xl font-bold">Ingredients on hand</h2>
-        <ul>{listIngredients}</ul>
-      </section>
+      <IngredientsList ingredients={ingredients} />
+      <ClaudeRecipe ingredients={ingredients} />
     </main>
   );
 }
