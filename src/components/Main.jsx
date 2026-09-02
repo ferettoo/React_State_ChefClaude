@@ -27,7 +27,7 @@ export default function Main() {
         </button>
       </form>
       <IngredientsList ingredients={ingredients} />
-      <ClaudeRecipe ingredients={ingredients} />
+      {ingredients.length > 3 && <ClaudeRecipe ingredients={ingredients} />}
     </main>
   );
 }
