@@ -1,4 +1,6 @@
 import { useState } from "react";
+import IngredientsList from "./IngredientsList";
+import ClaudeRecipe from "./ClaudeRecipe";
 
 export default function Main() {
   const [ingredients, setIngredients] = useState([]);
@@ -8,34 +10,24 @@ export default function Main() {
     setIngredients((prevIngredients) => [...prevIngredients, newIngredient]);
   }
 
-  const listIngredients = ingredients.map((ingredient) => {
-    return (
-      <li className="bg list-disc p-2" key={ingredient}>
-        {ingredient}
-      </li>
-    );
-  });
-
   return (
-    <main className="mx-auto w-3/4">
+    <main className="mx-auto w-11/12 md:w-3/4">
       <form
         action={addIngredients}
-        className="flex items-center justify-center gap-4 p-20"
+        className="flex flex-col items-stretch justify-center gap-3 p-6 sm:flex-row sm:items-center sm:gap-4 sm:p-10 md:p-20"
       >
         <input
           type="text"
           name="ingredient"
           placeholder="Add Ingredient"
-          className="w-2/4 rounded-lg border border-slate-200 bg-white px-3 py-3 text-sm shadow-sm transition duration-300 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none"
+          className="w-full rounded-lg border border-slate-200 bg-white px-3 py-3 text-sm shadow-sm transition duration-300 placeholder:text-slate-400 focus:border-slate-400 focus:outline-none sm:w-2/4"
         />
-        <button className="rounded-lg bg-black px-5 py-3 text-sm text-white hover:bg-gray-800 focus:outline-none md:px-10">
+        <button className="w-full rounded-lg bg-black px-5 py-3 text-sm text-white hover:bg-gray-800 focus:outline-none sm:w-auto md:px-10">
           + Add Ingredient
         </button>
       </form>
-      <section className="mx-auto flex flex-col gap-4">
-        <h2 className="text-2xl font-bold">Ingredients on hand</h2>
-        <ul>{listIngredients}</ul>
-      </section>
+      <IngredientsList ingredients={ingredients} />
+      {ingredients.length >= 3 && <ClaudeRecipe ingredients={ingredients} />}
     </main>
   );
 }
