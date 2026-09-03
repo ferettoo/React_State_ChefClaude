@@ -1,5 +1,5 @@
 const HF_API_URL = "https://router.huggingface.co/v1/chat/completions";
-const HF_MODEL = "meta-llama/Llama-3.2-3B-Instruct";
+const HF_MODEL = "openai/gpt-oss-20b:groq";
 
 export async function getRecipeFromIngredients(ingredients) {
   const ingredientsList = ingredients.join(", ");
@@ -15,7 +15,7 @@ export async function getRecipeFromIngredients(ingredients) {
       messages: [
         {
           role: "user",
-          content: `You are a helpful chef. I have these ingredients: ${ingredientsList}. Please suggest a recipe I can make using some or all of these ingredients. Include a recipe name, list of ingredients with quantities, and step-by-step instructions.`,
+          content: `You are a helpful chef. I have these ingredients: ${ingredientsList}. Suggest a recipe I can make using some or all of these ingredients. Respond only in markdown with: a recipe title as a heading, a list of ingredients with quantities, and numbered step-by-step instructions.`,
         },
       ],
       max_tokens: 800,
@@ -30,5 +30,6 @@ export async function getRecipeFromIngredients(ingredients) {
   }
 
   const data = await response.json();
+  console.log(data);
   return data.choices[0].message.content;
 }

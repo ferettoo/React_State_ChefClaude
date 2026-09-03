@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ReactMarkdown from "react-markdown";
 import { getRecipeFromIngredients } from "../ai";
 
 export default function ClaudeRecipe({ ingredients }) {
@@ -9,7 +10,6 @@ export default function ClaudeRecipe({ ingredients }) {
   async function handleGetRecipe() {
     setIsLoading(true);
     setError("");
-    setRecipe("");
 
     try {
       const generatedRecipe = await getRecipeFromIngredients(ingredients);
@@ -44,10 +44,10 @@ export default function ClaudeRecipe({ ingredients }) {
       )}
 
       {recipe && (
-        <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+        <article className="mb-10 rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
           <h2 className="mb-4 text-lg font-semibold">Your Recipe</h2>
-          <div className="text-sm leading-relaxed whitespace-pre-wrap text-slate-700">
-            {recipe}
+          <div className="text-sm leading-relaxed text-slate-700 [&_h1]:mb-3 [&_h1]:text-xl [&_h1]:font-bold [&_h2]:mb-3 [&_h2]:text-lg [&_h2]:font-semibold [&_h3]:mb-2 [&_h3]:text-base [&_h3]:font-semibold [&_ol]:my-3 [&_ol]:list-decimal [&_ol]:space-y-1 [&_ol]:pl-5 [&_p]:mb-3 [&_strong]:font-semibold [&_ul]:my-3 [&_ul]:list-disc [&_ul]:space-y-1 [&_ul]:pl-5">
+            <ReactMarkdown>{recipe}</ReactMarkdown>
           </div>
         </article>
       )}
